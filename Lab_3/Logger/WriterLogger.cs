@@ -12,5 +12,6 @@ namespace Lab_3.Logger
         }
 
         public abstract void Dispose();
+
     }
 }

@@ -7,9 +7,9 @@ namespace Lab_3
     {
         static void Main(string[] args)
         {
-           ConsoleLogger logger = new ConsoleLogger();
+           FileLogger logger = new FileLogger("text.txt");
 
-            logger.Log("chuj ci w dupe zjebie");
+            logger.Log("eee");
 
             
         }

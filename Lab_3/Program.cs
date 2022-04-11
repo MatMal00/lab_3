@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab_3.Logger;
+using System;
 
 namespace Lab_3
 {
@@ -6,7 +7,11 @@ namespace Lab_3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+           ConsoleLogger logger = new ConsoleLogger();
+
+            logger.Log("chuj ci w dupe zjebie");
+
+            
         }
     }
 }

@@ -21,7 +21,6 @@ namespace Lab_3.Logger
                 {
                     foreach (var message in messages) writer.WriteLine(message);
                 }
-
             }
             finally
             {
@@ -31,8 +30,20 @@ namespace Lab_3.Logger
             }
         }
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                    this.stream.Dispose();
+
+                this.disposed = true;
+            }
+        }
+
         public override void Dispose()
         {
+            this.Dispose(disposing: true);
         }
     }
 }

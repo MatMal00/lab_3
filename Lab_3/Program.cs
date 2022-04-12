@@ -7,11 +7,9 @@ namespace Lab_3
     {
         static void Main(string[] args)
         {
-           FileLogger logger = new FileLogger("text.txt");
+            SocketLogger logger = new SocketLogger("google.com", 80);
 
             logger.Log("eee");
-
-            
         }
     }
 }

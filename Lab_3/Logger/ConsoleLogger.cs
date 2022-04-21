@@ -10,8 +10,12 @@ namespace Lab_3.Logger
     {
         public override void Log(params string[] messages)
         {
+
             writer = Console.Out;
-            foreach (var message in messages) writer.WriteLine(message);
+            string messageToSend = time.ToString("yyyy-MM-ddTHH:mm:sszzz") + ": ";
+            foreach (var message in messages) messageToSend += message + " ";
+
+            writer.WriteLine(messageToSend);
         }
 
         public override void Dispose()

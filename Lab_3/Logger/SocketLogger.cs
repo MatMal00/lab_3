@@ -15,9 +15,14 @@ namespace Lab_3.Logger
 
         public void Log(params string[] messages)
         {
+            DateTime time = DateTime.Now;
+
             try
             {
-                foreach (var message in messages) clientSocket.Send(Encoding.UTF8.GetBytes(message));
+                string messageToSend = time.ToString("yyyy-MM-ddTHH:mm:sszzz") + ": ";
+                foreach (var message in messages) messageToSend += message + " ";
+
+                clientSocket.Send(Encoding.UTF8.GetBytes(messageToSend));
             }
             catch (Exception ex)
             {

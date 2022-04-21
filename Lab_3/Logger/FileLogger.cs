@@ -21,8 +21,10 @@ namespace Lab_3.Logger
             {
                 using (TextWriter writer = new StreamWriter(stream, Encoding.UTF8))
                 {
+                    string messageToSend = time.ToString("yyyy-MM-ddTHH:mm:sszzz") + ": ";
+                    foreach (var message in messages) messageToSend += message + " ";
 
-                    foreach (var message in messages) writer.WriteLine(message);
+                    writer.WriteLine(messageToSend);
                     writer.Flush();
                 }
 

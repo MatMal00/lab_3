@@ -23,10 +23,6 @@ namespace Lab_3.Logger
             {
                 Console.WriteLine(ex.ToString());
             }
-            finally
-            {
-                clientSocket.Close();
-            }
         }
 
         protected virtual void Dispose(bool disposing)

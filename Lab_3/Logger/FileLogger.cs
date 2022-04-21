@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 
 namespace Lab_3.Logger
@@ -7,26 +8,24 @@ namespace Lab_3.Logger
     {
         private bool disposed;
         protected FileStream stream = null;
+        private readonly string path;
 
         public FileLogger(string path)
         {
-            stream = new FileStream(path, FileMode.Append);
+            this.path = path;
         }
 
         public override void Log(params string[] messages)
         {
-            try
+            using (FileStream stream = new FileStream(path, FileMode.Append))
             {
-                using (writer = new StreamWriter(stream, Encoding.UTF8))
+                using (TextWriter writer = new StreamWriter(stream, Encoding.UTF8))
                 {
+
                     foreach (var message in messages) writer.WriteLine(message);
+                    writer.Flush();
                 }
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Dispose();
-                writer.Dispose();
+
             }
         }
 
@@ -35,7 +34,9 @@ namespace Lab_3.Logger
             if (!this.disposed)
             {
                 if (disposing)
-                    this.stream.Dispose();
+                {
+                    if (stream != null) this.stream.Dispose();
+                }
 
                 this.disposed = true;
             }
@@ -44,6 +45,11 @@ namespace Lab_3.Logger
         public override void Dispose()
         {
             this.Dispose(disposing: true);
+        }
+
+        ~FileLogger()
+        {
+            Dispose(disposing: false);
         }
     }
 }

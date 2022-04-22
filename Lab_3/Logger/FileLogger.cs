@@ -12,23 +12,8 @@ namespace Lab_3.Logger
 
         public FileLogger(string path)
         {
-            this.path = path;
-        }
-
-        public override void Log(params string[] messages)
-        {
-            using (FileStream stream = new FileStream(path, FileMode.Append))
-            {
-                using (TextWriter writer = new StreamWriter(stream, Encoding.UTF8))
-                {
-                    string messageToSend = time.ToString("yyyy-MM-ddTHH:mm:sszzz") + ": ";
-                    foreach (var message in messages) messageToSend += message + " ";
-
-                    writer.WriteLine(messageToSend);
-                    writer.Flush();
-                }
-
-            }
+            stream = new FileStream(path, FileMode.Append);
+            writer = new StreamWriter(stream, Encoding.UTF8);
         }
 
         protected virtual void Dispose(bool disposing)

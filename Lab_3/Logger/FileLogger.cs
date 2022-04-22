@@ -8,7 +8,6 @@ namespace Lab_3.Logger
     {
         private bool disposed;
         protected FileStream stream = null;
-        private readonly string path;
 
         public FileLogger(string path)
         {
